@@ -66,7 +66,7 @@ def outputFallbackMatches(fallback, lake, outputfn):
                     if re.search(regPatt, lowerUtter) is not None:
                         fallbackName = fbName
                         # only match first fallback. Is this how it works in amelia?
-                        break;
+                        break
 
             out.write(intentName + "\t" + fallbackName + "\t" + utter + "\n")
 
