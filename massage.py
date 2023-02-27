@@ -164,10 +164,10 @@ def printAllFileNamesInDir(dirPath):
 # directly imported into Amelia NLU, requires Henrik's architecture file
 # inputs:
 #   fp -> filepath of the nlu architecture excel file
-def mapIntents(fpnlu, currIntents):
+def mapIntents(fpnlu, intentMap):
     nluarch = pd.read_excel(fpnlu)
-    with open(currIntents) as i:
-    
+    #with open(intentMap) as i:
+        
     return 
 
 

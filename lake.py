@@ -1,10 +1,49 @@
+from intent import Intent
 class Lake:
-    def __init__(self, intentMap):
+    def __init__(self, intentMap=[], intex=""):
         self.name = ""
-        self.map = intentMap # full lake
-        self.val = {} # validation set
+        self.map = intentMap  # full lake
+        self.val = {}  # validation set
         self.allutter = []
         self.outlst = []
+        self.allheaders = []  # header of every intent in lake
+
+        if intex:
+            self.addLakeFromFile(intex)
+            self.gatherUtterances()
+
+    # imports an entire Intent Export as a lake
+    # currently every intent MUST have a header
+    def addLakeFromFile(self, intex):
+        with open(intex, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                splt = line.split("\t")
+
+                # check for header lines and create new intent for it
+                if splt[0] == "#":
+                    name = splt[1]
+                    newIntent = Intent(name)
+                    newIntent.header = line
+                    # add header to lake as well
+                    self.allheaders.append(line)
+                    self.map[name] = newIntent
+                # otherwise it is an utterance line
+                else:
+                    name = splt[0]
+                    utterance = splt[1]
+
+                    # all intents should exist at this point (see above) so no need to check
+                    # if name in self.map:
+                    #     self.map[name].addUtterance(utterance)
+                    # else:
+                    newIntent = Intent(name)
+                    newIntent.addUtterance(utterance)
+                    self.map[name] = newIntent
+
+            # set headers for lake for easy output
+
+            return self.map
 
     def gatherUtterances(self):
         for intent in self.map:

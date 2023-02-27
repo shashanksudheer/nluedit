@@ -3,6 +3,7 @@ import csv
 
 from intent import Intent
 from lake import Lake
+import massage
 
 def addUtterancesFromFile(file, intentMap, opt="i"):
     with open(file, "r", encoding="utf-8") as f:
@@ -84,20 +85,20 @@ def checkChanges(file, lake):
     return
 
 if __name__ == '__main__':
-    file = "intex.tsv"
+    file = "tf/testblue.tsv"
     intentMap = {}
-    # 3 line intent file (w/ prediction) add config option "p", otherwise "i"
+    # 3 line intent file (w/ prediction) add config option "p", otherwise "i" TODO: what is f?
     intentMap = addUtterancesFromFile(file, intentMap)
     lake = Lake(intentMap)
 
-    lake.splitAndPrintValidation()
-    #lake.gatherUtterances()
-    #lake.getPercentageOfUtterances(0.2)
-    #lake.printOutLake("lakeOutput.tsv")
-
-    # file2 = "intex2.tsv"
-    # intentMap2 = {}
-    # intentMap2 = addUtterancesFromFile(file2, intentMap2)
+    #     lake.splitAndPrintValidation()
+    #     #lake.gatherUtterances()
+    #     #lake.getPercentageOfUtterances(0.2)
+    #     #lake.printOutLake("lakeOutput.tsv")
+    #
+    #     # file2 = "intex2.tsv"
+    #     # intentMap2 = {}
+    #     # intentMap2 = addUtterancesFromFile(file2, intentMap2)
 
     #outfile = "outfile.tsv"
 
