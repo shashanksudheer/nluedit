@@ -8,13 +8,14 @@ import sys
 import fileinput
 import random
 import os
+import pandas as pd
 
 # Code to replace every occurance of {variable} in a given file
 # with a random choice from a given input list
 #
 # Input: 
-#   varToRep =  the word from file to replace 
-#   filename =  the path to the file that should be modified
+#   varToRep ->  the word from file to replace 
+#   filename ->  the path to the file that should be modified
 # Output: 
 #   a string saying finished
 def randomReplace(varToRep, filename):
@@ -31,7 +32,7 @@ def randomReplace(varToRep, filename):
 
 # Splits on whatever character is provided as input
 # Input: 
-#   inp = character to replace one
+#   inp -> character to replace one
 # Output:
 #   string saying finished
 def converseSplit(inp):
@@ -46,7 +47,7 @@ def converseSplit(inp):
 
 # Splits on whatever character is provided as input and extracts only one line
 # Input: 
-#   fn = filename to split on
+#   fn -> filename to split on
 # Output:
 #   string saying finished
 def splitOut(filename):
@@ -74,8 +75,8 @@ def splitOut(filename):
 
 # scripts that appends all files together into one output file 
 # Input:
-#   initDirPath = the path to the directory with all the files that need
-#                 to be combined
+#   initDirPath -> the path to the directory with all the files that need
+#                  to be combined
 # Output:
 #   A file called 'output.tsv' within the directory that was provided
 def combineAll(initDirPath): 
@@ -149,13 +150,23 @@ def choose(fnToGet, n):
     return 'Finished choosing -- printed to outfile.tsv'
 
 
+# function that prints out all filenames in a directory 
+# input:
+#   dirpath -> directory to pass in
+# output:
+#   comma-separated string of filenames
 def printAllFileNamesInDir(dirPath):
     dirLst = os.listdir(dirPath)
-    dirPath = ','.join(dirLst)
-    return dirPath
+    dirStr = ','.join(dirLst)
+    return dirStr
 
-
-
+# function that maps intents with BPNs and outputs a .tsv file that can be
+# directly imported into Amelia NLU, requires Henrik's architecture file
+# inputs:
+#   fp -> filepath of the nlu architecture excel file
+def mapIntents(fp):
+    nluarch = pd.read_excel(fp)
+    return nluarch.head()
 
 
 def main():
@@ -176,6 +187,8 @@ def main():
         default = splitOut(args[2])
     elif args[1] == 'choose':
         default = choose(args[2], args[3])
+    elif args[1] == 'mapint':
+        default = mapIntents(args[2])
     elif args[1] == '-h':
         print(
             'replace <variable to replace> <filename>\nconverse <character to split on>\ncombine <diectory path>\nsplitout <filename>'
