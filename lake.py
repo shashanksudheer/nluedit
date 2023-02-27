@@ -1,6 +1,6 @@
 from intent import Intent
 class Lake:
-    def __init__(self, intentMap=[], intex=""):
+    def __init__(self, intentMap={}, intex=""):
         self.name = ""
         self.map = intentMap  # full lake
         self.val = {}  # validation set
@@ -11,6 +11,15 @@ class Lake:
         if intex:
             self.addLakeFromFile(intex)
             self.gatherUtterances()
+
+    def __str__(self):
+        strFull = ""
+        allheadersStr = '\n'.join(self.allheaders)
+        strFull += allheadersStr
+        for intentName in self.map:
+            intent = self.map[intentName]
+            strFull += intent.printOut()
+        return strFull
 
     # imports an entire Intent Export as a lake
     # currently every intent MUST have a header
@@ -61,7 +70,9 @@ class Lake:
         return
 
     def printOutLake(self, outfn):
+        allheadersStr = '\n'.join(self.allheaders)
         with open(outfn, "w", encoding="utf-8") as of:
+            of.write(allheadersStr)
             for intentName in self.map:
                 intent = self.map[intentName]
                 of.write(intent.printOut())
