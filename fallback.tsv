@@ -1,0 +1,23 @@
+Intent	Output	Input
+AdobeKeyword	AdobeKeyword	adobe
+AdsKeyword	AdsKeyword	\bads|aqua (data) ?studio
+AladdinKeyword	AladdinKeyword	aladdin|genie
+AlphabetaKeyword	AlphabetaKeyword	alpha ?-?beta
+BenefitsKeyword	BenefitsKeyword	benefits?
+BlockIDKeyword	BlockIDKeyword	block ?-?id\b
+BloombergKeyword	BloombergKeyword	bloom ?berg
+ConcurKeyword	ConcurKeyword	concur
+CoupaKeyword	CoupaKeyword	coupa
+DataKeyword	DataKeyword	(primary )?data
+DoxKeyword	DoxKeyword	dox
+DuoKeyword	DuoKeyword	duo
+ExpenseKeyword	ExpenseKeyword	expenses?
+JabberKeyword	JabberKeyword	jabber
+MobileIronKeyword	MobileIronKeyword	mobile ?iron
+PersonalTradingKeyword	PersonalTradingKeyword	pta|(?=.*personal)(?=.*trading).*$
+RedOakKeyword	RedOakKeyword	red ?oak
+SurfaceGoKeyword	SurfaceGoKeyword	surface ?(go|laptop)|slg|sgl
+TravelKeyword	TravelKeyword	travel
+WorkdayKeyword	WorkdayKeyword	work ?day
+WorkflowKeyword	WorkflowKeyword	work ?flow
+ZscalerKeyword	ZscalerKeyword	z ?scaler
