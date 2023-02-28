@@ -12,8 +12,8 @@ class Intent:
     #       val - bool config option that determines whether to output just the intent utterances
     #             as a whole, or whether to output as a split of validation and the rest
     # OUTPUT
-    #       string - A String of all the utterances with standard TSV formatting (INTENT\tUTTERANCE)
-    #                or a tuple with two strings: string[0]: normal utterances | string[1]: validation
+    #       string/tup - A String of all the utterances with standard TSV formatting (INTENT\tUTTERANCE)
+    #                or a tuple with two strings: tup[0]: normal utterances | tup[1]: validation
     def printOut(self, val=False):
         string = ""
         if not val:

@@ -1,6 +1,5 @@
 #	AccessKeyword	accesskeyword	EXECUTE_BPN	null	null	null	null	ACTIVE	null	{"lowConfidenceCqaStatus":"ENABLED","twoIntentCqaStatus":"ENABLED","keyPhrases":[],"keyPhraseCreatorType":"MANUAL"}	AUTOMATIC	SUSPEND	null	AUTOMATIC	null	null	IGNORE	null	null	#
 #	AccountChange	AccountChange	EXECUTE_BPN	null	null	null	null	ACTIVE	null	{"lowConfidenceCqaStatus":"ENABLED","twoIntentCqaStatus":"ENABLED","keyPhrases":[""],"keyPhraseCreatorType":"MANUAL"}	AUTOMATIC	SUSPEND	null	AUTOMATIC	null	null	CONTINUE	null	null	#
-AccessKeyword	access this
 AccessKeyword	access
 AccessKeyword	let me access
 AccountChange	change my account

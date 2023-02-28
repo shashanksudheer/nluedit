@@ -160,15 +160,6 @@ def printAllFileNamesInDir(dirPath):
     dirStr = ','.join(dirLst)
     return dirStr
 
-# function that maps intents with BPNs and outputs a .tsv file that can be
-# directly imported into Amelia NLU, requires Henrik's architecture file
-# inputs:
-#   fp -> filepath of the nlu architecture excel file
-def mapIntents(fpnlu, intentMap):
-    nluarch = pd.read_excel(fpnlu)
-    #with open(intentMap) as i:
-        
-    return 
 
 
 def main():

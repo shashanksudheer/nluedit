@@ -1,3 +1,5 @@
+import pandas as pd
+
 from intent import Intent
 class Lake:
     def __init__(self, intentMap={}, intex=""):
@@ -15,6 +17,7 @@ class Lake:
     def __str__(self):
         strFull = ""
         allheadersStr = '\n'.join(self.allheaders)
+        allheadersStr += '\n'
         strFull += allheadersStr
         for intentName in self.map:
             intent = self.map[intentName]
@@ -46,9 +49,8 @@ class Lake:
                     # if name in self.map:
                     #     self.map[name].addUtterance(utterance)
                     # else:
-                    newIntent = Intent(name)
-                    newIntent.addUtterance(utterance)
-                    self.map[name] = newIntent
+                    #new Intent = Intent(name)
+                    self.map[name].addUtterance(utterance)
 
             # set headers for lake for easy output
 
@@ -96,6 +98,18 @@ class Lake:
                         mf.write(intent.printOut())
         return
 
-    # update the lake fields when stuff gets added
+    # function that maps intents with BPNs and outputs a .tsv file that can be
+    # directly imported into Amelia NLU, requires Henrik's architecture file
+    # inputs:
+    #   fp -> filepath of the nlu architecture excel file
+    def mapIntents(self, fpnlu):
+        nluarch = pd.read_excel(fpnlu)
+        for intentName in self.map:
+            intent = self.map[intentName]
+
+
+        return
+
+        # TODO: update the lake fields when stuff gets added (probably only start this when sublime/vscode editing starts)
     def updateLake(self):
         return

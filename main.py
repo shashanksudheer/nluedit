@@ -84,7 +84,7 @@ def checkChanges(file, lake):
     return
 
 if __name__ == '__main__':
-    file = "tf/testblue.tsv"
+    file = "tf/intex.tsv"
     outfile = "tf/outfile.tsv"
     # intentMap = {}
     # 3 line intent file (w/ prediction) add config option "p", otherwise "i" TODO: what is f?
