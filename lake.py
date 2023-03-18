@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 from intent import Intent
 class Lake:
@@ -63,6 +64,16 @@ class Lake:
 
         return self.allutter
 
+    # function to gather all headers from every intent
+    # TODO: recheck and see if this should actually be done on printOut/__str__
+    def gatherHeaders(self):
+        self.allheaders.clear()
+        for intentName in self.map:
+            intent = self.map[intentName]
+            self.allheaders.append(intent.header)
+
+        return self.allheaders
+
     def getPercentageOfUtterances(self, n):
         n = float(n)
         with open("outfile.tsv", "w", encoding="utf-8") as of:
@@ -103,10 +114,23 @@ class Lake:
     # inputs:
     #   fp -> filepath of the nlu architecture excel file
     def mapIntents(self, fpnlu):
-        nluarch = pd.read_excel(fpnlu)
-        for intentName in self.map:
-            intent = self.map[intentName]
+        nluarch = pd.read_excel(fpnlu, usecols="S,AG")
+        for index, row in nluarch.iterrows():
+            intentName = row["INTENTS"]
+            bpnMap = row["IMPLEMENTATION"]
+            # skip items that don't have a mapping associated
+            if bpnMap == "//" or pd.isna(bpnMap):
+                continue
+            if intentName in self.map:
+                intent = self.map[intentName]
+                intentLst = intent.header.split("\t")
+                # field that contains the bpn to execute
+                intentLst[4] = bpnMap
+                newHeader = '\t'.join(intentLst)
+                intent.header = newHeader
 
+        self.gatherHeaders()
+        print("Finished mapping")  # TODO: change to actual logging
 
         return
 

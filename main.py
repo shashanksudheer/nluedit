@@ -84,13 +84,14 @@ def checkChanges(file, lake):
     return
 
 if __name__ == '__main__':
-    file = "tf/intex.tsv"
+    file = "tf/testblue.tsv"
     outfile = "tf/outfile.tsv"
     # intentMap = {}
     # 3 line intent file (w/ prediction) add config option "p", otherwise "i" TODO: what is f?
     #intentMap = addUtterancesFromFile(file, intentMap)
     lake = Lake(intex=file)
-    print(lake)
+    lake.mapIntents("tf/scope_nlu_blackrock.xlsx")
+    lake.printOutLake(outfile)
 
     #     lake.splitAndPrintValidation()
     #     #lake.gatherUtterances()
