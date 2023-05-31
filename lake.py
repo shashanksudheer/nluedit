@@ -9,7 +9,7 @@ class Lake:
         self.val = {}  # validation set
         self.allutter = []
         self.outlst = []
-        self.allheaders = []  # header of every intent in lake
+        self.allheaders = []  # header of every intent in lake : is 2D Array
 
         if intex:
             self.addLakeFromFile(intex)
@@ -37,9 +37,9 @@ class Lake:
                 if splt[0] == "#":
                     name = splt[1]
                     newIntent = Intent(name)
-                    newIntent.header = line
+                    newIntent.header = splt
                     # add header to lake as well
-                    self.allheaders.append(line)
+                    self.allheaders.append(splt)
                     self.map[name] = newIntent
                 # otherwise it is an utterance line
                 else:
@@ -133,6 +133,32 @@ class Lake:
         print("Finished mapping")  # TODO: change to actual logging
 
         return
+
+    # checks to see if a valid BPN is assigned
+    # default is the default null BPN name in case you require something besides null
+    # like some sort of default disambiguation BPN
+    def checkBPNAssigned(self, intent, default="null"):
+        BPN = self.map[intent].header[4]
+        if (default == BPN):
+            return True
+        else:
+            return False
+
+
+    def percentageNoBPN(self, file, default="null"):
+        count = 0
+        with open(file, "r") as f:
+            for line in f:
+                lineLst = line.split("\t")
+                if (lineLst[0] in self.map):
+                    isAssigned = self.checkBPNAssigned(lineLst[0], default)
+                    count += 1
+        perc = float(count/len(self.map))
+        return perc
+
+
+
+
 
         # TODO: update the lake fields when stuff gets added (probably only start this when sublime/vscode editing starts)
     def updateLake(self):

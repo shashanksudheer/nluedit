@@ -72,6 +72,25 @@ def outputFallbackMatches(fallback, lake, outputfn):
 
     return "All Done :)"
 
+def mapDescriptions(old, new):
+    oldMap = {}
+
+    for i in old.allheaders:
+        oldDesc = i.split("\t")[5]
+        oldBPN = i.split("\t")[4]
+        oldMap[oldBPN] = oldDesc
+
+    for i in range(len(new.allheaders)):
+        newHeader = new.allheaders[i].split("\t")
+        newBPN = newHeader[4]
+
+        if newBPN in oldMap:
+            newHeader[5] = oldMap[newBPN]
+            new.allheaders[i] = "\t".join(newHeader)
+
+    return
+
+
 
 def commitChanges(file, lake):
     #open(file, "w").close()
@@ -83,28 +102,19 @@ def checkChanges(file, lake):
 
     return
 
+
+
+
+
 if __name__ == '__main__':
-    file = "tf/testblue.tsv"
+    arch = "tf/intex.tsv"
+    utteranceExport = "tf/intex2.tsv"
     outfile = "tf/outfile.tsv"
     # intentMap = {}
     # 3 line intent file (w/ prediction) add config option "p", otherwise "i" TODO: what is f?
-    #intentMap = addUtterancesFromFile(file, intentMap)
-    lake = Lake(intex=file)
-    lake.mapIntents("tf/scope_nlu_blackrock.xlsx")
-    lake.printOutLake(outfile)
 
-    #     lake.splitAndPrintValidation()
-    #     #lake.gatherUtterances()
-    #     #lake.getPercentageOfUtterances(0.2)
-    #     #lake.printOutLake("lakeOutput.tsv")
-    #
-    #     # file2 = "intex2.tsv"
-    #     # intentMap2 = {}
-    #     # intentMap2 = addUtterancesFromFile(file2, intentMap2)
+    lake = Lake(intex=arch)
+    perc = lake.percentageNoBPN(utteranceExport, default="intentDisambiguation")
 
-
-    #fallback = "fallback.tsv"
-    #outputFallbackMatches(fallback, lake, outfile)
-
-    print("All Done :)")
+    print(perc)
 

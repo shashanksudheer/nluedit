@@ -5,7 +5,7 @@ class Intent:
         self.utterCount = 0
         self.utterancePrediction = {}
         self.validation = []  # id's of utterances used for validation
-        self.header = ""  # TODO: make this separate variables
+        self.header = []  # TODO: make this separate variables
 
     # Function to output string versions of the utterances
     # INPUT

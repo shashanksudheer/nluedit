@@ -161,6 +161,9 @@ def printAllFileNamesInDir(dirPath):
     return dirStr
 
 
+def matchConvoIDsWithUtterance(fnToGet):
+
+
 
 def main():
     
@@ -177,11 +180,11 @@ def main():
     elif args[1] == 'addid':
         default = addIDs(args[2], args[3])
     elif args[1] == 'splitout':
-        default = splitOut(args[2])
+        default = splitOut("massageInput.txt")
     elif args[1] == 'choose':
         default = choose(args[2], args[3])
-    elif args[1] == 'mapint':
-        default = mapIntents(args[2])
+    #elif args[1] == 'mapint':
+    #    default = mapIntents(args[2])
     elif args[1] == '-h':
         print(
             'replace <variable to replace> <filename>\nconverse <character to split on>\ncombine <diectory path>\nsplitout <filename>'
@@ -191,4 +194,4 @@ def main():
     
     return default
 
-print(main())
+splitOut("C:\Users\shank\Projects\nluedit\massageInput.txt")
